@@ -42,11 +42,13 @@ jobs:
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     issue_number: prNumber,
-                    body: `✅ This PR is linked to submission issue #${issueNumber}.
-
-Thank you for linking your submission! Your PR will be reviewed along with the submission issue.
-
-**Reviewer**: @nisalgunawardhana will review this PR as part of the submission process.`
+                    body: [
+                      `✅ This PR is linked to submission issue #${issueNumber}.`,
+                      '',
+                      'Thank you for linking your submission! Your PR will be reviewed along with the submission issue.',
+                      '',
+                      '**Reviewer**: @nisalgunawardhana will review this PR as part of the submission process.'
+                    ].join('\n')
                   });
                 }
               } catch (error) {
@@ -57,15 +59,17 @@ Thank you for linking your submission! Your PR will be reviewed along with the s
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: `⚠️ **Missing Submission Link**
-
-This PR doesn't appear to be linked to a submission issue.
-
-If you're submitting work for review:
-1. Create a [Submission Issue](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/new/choose)
-2. Reference this PR number (#${prNumber}) in the submission form
-3. Link the submission issue in this PR description
-
-Example: \`Closes #123\` or \`Related to #123\``
+                body: [
+                  '⚠️ **Missing Submission Link**',
+                  '',
+                  'This PR doesn\'t appear to be linked to a submission issue.',
+                  '',
+                  'If you\'re submitting work for review:',
+                  `1. Create a [Submission Issue](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/new/choose)`,
+                  `2. Reference this PR number (#${prNumber}) in the submission form`,
+                  '3. Link the submission issue in this PR description',
+                  '',
+                  'Example: `Closes #123` or `Related to #123`'
+                ].join('\n')
               });
             }
